@@ -114,3 +114,10 @@ async def status():
         "connection": connection_status,
         "messages_received": "latest_message" in aircraft
     }
+@app.get("/api/aircraft")
+async def get_aircraft():
+    return {
+        "connection": connection_status,
+        "data": aircraft.get("latest_message", {}),
+    }
+
