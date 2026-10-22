@@ -1,5 +1,4 @@
-fastapi
-uvicorn
-gunicorn
-websockets
-httpx
+flask>=3.0,<4
+requests>=2.31,<3
+websocket-client>=1.8,<2
+gunicorn>=22,<24
