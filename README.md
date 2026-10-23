@@ -1,3 +1,23 @@
+# ATC6 V2 upgrade
+
+## New in this version
+- Radar aircraft history trails (up to 90 samples and 15 minutes), toggleable.
+- Fit all currently reported aircraft to radar view.
+- AeroNav chart launcher and FlightEye / 24Scope comparison links.
+- Clearance generation blocks controller-configured closed or departure-disabled runways.
+- Browser storage synchronization between tabs on the same browser profile.
+
+## Deployment
+Replace the existing repository files with the files inside this ZIP, keeping the same file structure (files at repository root). Commit changes and let the existing Render service redeploy. No new environment variables are needed. `render.yaml` retains one WebSocket worker.
+
+## What this does NOT do
+- This is a **PTFS world-coordinate radar**, not a georeferenced airport diagram. Never place aircraft on a conventional map by pretending PTFS coordinates are latitude/longitude.
+- AeroNav is opened externally; chart embedding/API access is not established.
+- FlightEye and 24Scope are external comparison links, **not synchronized write integrations**. ATC6 cannot change aircraft positions or external flight plans.
+- Airport runways are entered and confirmed by the controller; no authoritative closure status is fetched. Published ATIS does not prove runway openness.
+- Runway settings remain browser-local. Cross-device/server persistence requires authentication and a durable database; avoid an unauthenticated public edit endpoint.
+- The live feed has not been verified against Render in this build environment.
+
 # ATC24 Live Scope
 
 Render-hosted FastAPI backend + browser controller dashboard.
